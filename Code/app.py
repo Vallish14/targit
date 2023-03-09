@@ -18,8 +18,11 @@ def home():
 @app.route("/account", methods=["POST", "GET"])
 def account():
     asset = "account.html"
-    usr = "<INVALID USR>"
-
+    usr = "<User Not Defined>" 
+    if (request.method == "POST"): 
+        usr = request.form["name"] 
+        if not usr: 
+            usr = "<User Not Defined>"
     if not does_assest_exist(asset):
         return false
     return render_template(asset,username=usr) 
